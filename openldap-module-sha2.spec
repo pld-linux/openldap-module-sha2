@@ -9,7 +9,6 @@ License:	BSD
 Group:		Applications
 Source0:	http://xatka.net/~z/PLD/%{name}-%{svnrel}.tar.bz2
 # Source0-md5:	56e27d51467898783da461c4f0c78091
-Source1:	%{name}.make
 URL:		http://confluence.atlassian.com/display/JIRAEXT/OpenLDAP+support+for+SHA-2+%28SHA-256,+SHA-384,+SHA-512%29+and+atlassian-sha1+passwords
 BuildRequires:	openldap-headers
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -24,8 +23,12 @@ Obsługa haseł SHA-512, SHA-384 and SHA-256 dla OpenLDAP.
 %setup -qn %{name}-%{svnrel}
 
 %build
-%{__make} -f %{SOURCE1} OPENLDAPINC=%{_includedir}/openldap
-%{__make} -C standalone
+%{__make} \
+	CC="%{__cc}" \
+	CCFLAGS="%{rpmcflags} -fPIC -I%{_includedir}/openldap"
+%{__make} -C standalone \
+	CC="%{__cc}" \
+	CCFLAGS="%{rpmcflags} -fPIC"
 
 %install
 rm -rf $RPM_BUILD_ROOT
