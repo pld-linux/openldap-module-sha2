@@ -25,11 +25,13 @@ Obsługa haseł SHA-512, SHA-384 and SHA-256 dla OpenLDAP.
 
 %build
 %{__make} -f %{SOURCE1} OPENLDAPINC=%{_includedir}/openldap
+%{__make} -C standalone
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libdir}/openldap
+install -d $RPM_BUILD_ROOT{%{_libdir}/openldap,%{_bindir}}
 cp slapd-sha2.so $RPM_BUILD_ROOT%{_libdir}/openldap/slapd-sha2.so
+cp standalone/sha2print $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -38,3 +40,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README
 %{_libdir}/openldap/slapd-sha2.so
+%{_bindir}/sha2print
