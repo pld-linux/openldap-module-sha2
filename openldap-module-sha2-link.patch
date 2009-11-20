@@ -1,0 +1,24 @@
+diff -Nur openldap-module-sha2-37261.orig/Makefile openldap-module-sha2-37261/Makefile
+--- openldap-module-sha2-37261.orig/Makefile	2009-11-20 16:19:07.000000000 +0100
++++ openldap-module-sha2-37261/Makefile	2009-11-20 21:12:36.488766532 +0100
+@@ -4,7 +4,7 @@
+ CCFLAGS = -Wall -g
+ 
+ slapd-sha2.so: slapd-sha2.o sha2.o
+-	$(CC) -I$(OPENLDAP)/include -shared -Wall -g $^ -o $@
++	$(CC) -I$(OPENLDAP)/include -shared -Wall $(CCFLAGS) $(LDFLAGS) $^ -o $@
+ 
+ %.o: %.c
+ 	$(CC) -I$(OPENLDAP)/include $(CCFLAGS) -c $<
+diff -Nur openldap-module-sha2-37261.orig/standalone/Makefile openldap-module-sha2-37261/standalone/Makefile
+--- openldap-module-sha2-37261.orig/standalone/Makefile	2009-11-20 16:19:07.000000000 +0100
++++ openldap-module-sha2-37261/standalone/Makefile	2009-11-20 21:12:55.742230903 +0100
+@@ -1,7 +1,7 @@
+ CCFLAGS = -Wall -O2
+ 
+ sha2print: sha2.o sha2print.o base64.o
+-	$(CC) $(CCFLAGS) $^ -o $@
++	$(CC) $(CCFLAGS) $(LDFLAGS)  $^ -o $@
+ 
+ %.o: %.c
+ 	$(CC) $(CCFLAGS) -c $<
