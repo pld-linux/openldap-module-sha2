@@ -4,7 +4,7 @@ Summary:	Support for SHA-512, SHA-384 and SHA-256 hashed passwords in OpenLDAP
 Summary(pl.UTF-8):	Obsługa haseł SHA-512, SHA-384 and SHA-256 dla OpenLDAP
 Name:		openldap-module-sha2
 Version:	0.%{svnrel}
-Release:	0.1
+Release:	1
 License:	BSD
 Group:		Applications
 Source0:	http://xatka.net/~z/PLD/%{name}-%{svnrel}.tar.bz2
