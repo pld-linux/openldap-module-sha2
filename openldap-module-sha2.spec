@@ -22,7 +22,7 @@ Obsługa haseł SHA-512, SHA-384 and SHA-256 dla OpenLDAP.
 
 %prep
 %setup -qn %{name}-%{svnrel}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__make} \
